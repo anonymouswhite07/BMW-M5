@@ -1,0 +1,86 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@300;600;900&display=swap');
+
+@theme {
+  --color-obsidian: #020202;
+  --color-m-blue: #0066B3;
+  --color-m-light-blue: #00A0E2;
+  --color-m-red: #E00016;
+  --color-m-dark-blue: #003366;
+  --color-alpine-white: #FFFFFF;
+  --color-silver-bullet: #E6E6E6;
+  --color-chrome: #A8A8A8;
+  
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-accent: 'Outfit', sans-serif;
+}
+
+:root {
+  font-family: var(--font-display);
+  background-color: var(--color-obsidian);
+  color: var(--color-alpine-white);
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  cursor: none; /* We will implement a custom magnetic cursor */
+}
+
+/* Film Grain Texture Overlay */
+.grain-overlay::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.1;
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)"/></svg>');
+  mix-blend-mode: overlay;
+}
+
+.text-glow-silver {
+  text-shadow: 0 0 20px rgba(230, 230, 230, 0.3);
+}
+
+.glass-m {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Luxury Smooth Scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Custom Cursor */
+#custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+  transition: transform 0.1s ease-out;
+}
